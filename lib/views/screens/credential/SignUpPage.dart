@@ -306,7 +306,7 @@ class SignUpPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.offAllNamed(AppRoutes.HOME);
+                Get.offAllNamed(AppRoutes.BOTTOMNAVIIGATION);
               },
               child: Container(
                 height: h * 0.06,

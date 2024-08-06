@@ -1,9 +1,13 @@
+import 'package:event_management/views/screens/BookingsPage.dart';
+import 'package:event_management/views/screens/HomePage.dart';
+import 'package:event_management/views/screens/MyFavouritesPage.dart';
+import 'package:event_management/views/screens/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:event_management/controller/BottomNavController.dart';
 
 class BottomNavigationPage extends StatelessWidget {
-  const BottomNavigationPage({super.key});
+  BottomNavigationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +15,7 @@ class BottomNavigationPage extends StatelessWidget {
 
     return Scaffold(
       body: Obx(() {
-        return Center(
-          child: Text(
-            'Selected Index: ${controller.currentIndex.value}',
-            style: TextStyle(color: Colors.black, fontSize: 24),
-          ),
-        );
+        return _pages[controller.currentIndex.value];
       }),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
@@ -31,12 +30,12 @@ class BottomNavigationPage extends StatelessWidget {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
+              icon: Icon(Icons.favorite_border),
+              label: 'Favourites',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
-              label: 'Cart',
+              icon: Icon(Icons.calendar_month),
+              label: 'Bookings',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
@@ -47,4 +46,10 @@ class BottomNavigationPage extends StatelessWidget {
       }),
     );
   }
+  final List<Widget> _pages = [
+    HomePage(),
+    MyFavouritesPage(),
+    BookingsPage(),
+    ProfilePage(),
+  ];
 }

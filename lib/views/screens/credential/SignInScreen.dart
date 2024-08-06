@@ -189,31 +189,36 @@ class SignInScreen extends StatelessWidget {
               SizedBox(
                 height: h * 0.06,
               ),
-              Container(
-                height: h * 0.06,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xff1E0040),
-                      Color(0xffF600AB),
-                    ],
+              GestureDetector(
+                onTap: () {
+                  Get.offAllNamed(AppRoutes.BOTTOMNAVIIGATION);
+                },
+                child: Container(
+                  height: h * 0.06,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xff1E0040),
+                        Color(0xffF600AB),
+                      ],
+                    ),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.2),
+                      width: h * 0.004,
+                    ),
+                    borderRadius: BorderRadius.circular(
+                      h * 0.026,
+                    ),
                   ),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
-                    width: h * 0.004,
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    h * 0.026,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "Sign in",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: h * 0.023,
+                  child: Center(
+                    child: Text(
+                      "Sign in",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: h * 0.023,
+                      ),
                     ),
                   ),
                 ),
