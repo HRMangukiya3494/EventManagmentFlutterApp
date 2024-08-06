@@ -6,6 +6,7 @@ import 'package:event_management/views/screens/credential/ForgetPasswordPage.dar
 import 'package:event_management/views/screens/credential/PrivacyPolicyPage.dart';
 import 'package:event_management/views/screens/credential/SignInScreen.dart';
 import 'package:event_management/views/screens/credential/SignUpPage.dart';
+import 'package:event_management/views/screens/credential/TermsPage.dart';
 import '../screens/SplashScreen.dart';
 import 'package:get/get.dart';
 import '../screens/credential/OTPVerificationPage.dart';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String OTPVEREFICATION = "/otp_verification_page";
   static const String SIGNUP = "/signup_page";
   static const String PRIVACYPOLICY = "/privacy_policy_page";
+  static const String TERMSSERVICE = "/terms_of_service_page";
   static const String BOTTOMNAVIIGATION = "/bottom_navigation";
   static const String HOME = "/home_page";
 
@@ -54,6 +56,10 @@ class AppRoutes {
     GetPage(
       name: PRIVACYPOLICY,
       page: () => PrivacyPolicyPage(),
+    ),
+    GetPage(
+      name: TERMSSERVICE,
+      page: () => TermsPage(),
     ),
     GetPage(
       name: BOTTOMNAVIIGATION,

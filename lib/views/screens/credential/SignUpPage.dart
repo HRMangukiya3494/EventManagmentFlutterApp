@@ -292,7 +292,7 @@ class SignUpPage extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              // Handle Terms tap
+                              Get.toNamed(AppRoutes.TERMSSERVICE);
                             },
                         ),
                       ],
