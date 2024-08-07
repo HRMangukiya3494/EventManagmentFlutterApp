@@ -7,4 +7,5 @@ class ImageUtils {
   static String EventIconVector = "EventIconVector.png";
   static String CalenderIconVector = "CalenderIconVector.png";
   static String SignInPageBG = "SignInPageBG.jpg";
+  static String EventDeatilAppBar = "EventDeatilAppBar.png";
 }

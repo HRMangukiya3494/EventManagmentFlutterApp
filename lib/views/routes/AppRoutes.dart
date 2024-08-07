@@ -1,5 +1,6 @@
 import 'package:event_management/views/screens/BookingsPage.dart';
 import 'package:event_management/views/screens/BottomNavigationPage.dart';
+import 'package:event_management/views/screens/CategoryPage.dart';
 import 'package:event_management/views/screens/HomePage.dart';
 import 'package:event_management/views/screens/IntroScreen.dart';
 import 'package:event_management/views/screens/MyFavouritesPage.dart';
@@ -37,6 +38,7 @@ class AppRoutes {
   static const String MANAGENOTIFICATIONS = "/manage_notifications_page";
   static const String PAYMENTMETHODS = "/payment_methods_page";
   static const String ADDNEWCARD = "/add_new_card_page";
+  static const String CATEGORY = "/category_page";
 
   static final routes = [
     GetPage(
@@ -110,6 +112,10 @@ class AppRoutes {
     GetPage(
       name: ADDNEWCARD,
       page: () => AddNewCardPage(),
+    ),
+    GetPage(
+      name: CATEGORY,
+      page: () => CategoryPage(),
     ),
   ];
 }

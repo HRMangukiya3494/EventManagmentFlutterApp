@@ -1,5 +1,7 @@
+import 'package:event_management/views/routes/AppRoutes.dart';
 import 'package:event_management/views/utils/ImageUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyFavouritesPage extends StatelessWidget {
   const MyFavouritesPage({super.key});
@@ -32,21 +34,27 @@ class MyFavouritesPage extends StatelessWidget {
               ),
             ),
             actions: [
-              Container(
-                height: h * 0.04,
-                width: h * 0.04,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.14),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.3),
+              GestureDetector(
+                onTap: () {
+
+                  Get.toNamed(AppRoutes.MANAGENOTIFICATIONS);
+                },
+                child: Container(
+                  height: h * 0.04,
+                  width: h * 0.04,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.14),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3),
+                    ),
+                    shape: BoxShape.circle,
                   ),
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.notifications_sharp,
-                    size: h * 0.02,
-                    color: Colors.white,
+                  child: Center(
+                    child: Icon(
+                      Icons.notifications_sharp,
+                      size: h * 0.02,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
