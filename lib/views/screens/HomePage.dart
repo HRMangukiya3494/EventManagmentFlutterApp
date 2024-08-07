@@ -1,6 +1,7 @@
 import 'package:event_management/controller/HomeController.dart';
 import 'package:event_management/views/routes/AppRoutes.dart';
 import 'package:event_management/views/utils/ImageUtils.dart';
+import 'package:event_management/views/utils/VarUtils.dart';
 import 'package:event_management/views/widgets/ViewAllRowWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -119,6 +120,7 @@ class HomePage extends StatelessWidget {
               ),
               ViewAllRowWidget(
                 title: "Category", onTap: () {
+                  VarUtils.showLog();
                 Get.toNamed(AppRoutes.CATEGORY);
               },
               ),

@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpPage extends StatelessWidget {
-  final SignUpController controller = Get.put(
-    SignUpController(),
-  );
+  final SignUpController controller = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
@@ -50,9 +49,7 @@ class SignUpPage extends StatelessWidget {
       ),
       backgroundColor: Color(0xff000513),
       body: Padding(
-        padding: EdgeInsets.all(
-          h * 0.02,
-        ),
+        padding: EdgeInsets.all(h * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -63,197 +60,63 @@ class SignUpPage extends StatelessWidget {
                 fontSize: h * 0.02,
               ),
             ),
-            SizedBox(
-              height: h * 0.04,
-            ),
+            SizedBox(height: h * 0.04),
+            // First Name and Last Name fields
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(
-                    "First Name",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white.withOpacity(0.48),
-                    ),
+                  child: _buildTextField(
+                    hintText: 'First Name',
+                    controller: controller.firstNameController,
                   ),
                 ),
+                SizedBox(width: 10), // Space between fields
                 Expanded(
-                  child: Text(
-                    "Last Name",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white.withOpacity(0.48),
-                    ),
+                  child: _buildTextField(
+                    hintText: 'Last Name',
+                    controller: controller.lastNameController,
                   ),
                 ),
               ],
             ),
-            SizedBox(
-              height: h * 0.01,
+            SizedBox(height: h * 0.02),
+            // Email field
+            _buildTextField(
+              hintText: 'Enter your email',
+              controller: controller.emailController,
+              prefixIcon: Icons.email,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: h * 0.06,
-                    margin: EdgeInsets.only(right: 10), // Space between fields
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.14),
-                      borderRadius: BorderRadius.circular(h * 0.01),
-                    ),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'First Name',
-                        hintStyle: TextStyle(color: Colors.white),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 14),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    height: h * 0.06,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.14),
-                      borderRadius: BorderRadius.circular(h * 0.01),
-                    ),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Last Name',
-                        hintStyle: TextStyle(color: Colors.white),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 14),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            SizedBox(height: h * 0.02),
+            // Phone field
+            _buildTextField(
+              hintText: 'Enter your mobile number',
+              controller: controller.phoneNumberController,
+              prefixIcon: Icons.call,
             ),
-            SizedBox(
-              height: h * 0.02,
+            SizedBox(height: h * 0.02),
+            // Password field
+            _buildTextField(
+              hintText: 'Enter your password',
+              controller: controller.passwordController,
+              prefixIcon: Icons.lock,
+              obscureText: true,
             ),
-            Text(
-              "Email",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white.withOpacity(0.48),
-              ),
+            SizedBox(height: h * 0.02),
+            // Confirm Password field
+            _buildTextField(
+              hintText: 'Confirm your password',
+              controller: controller.confirmPasswordController,
+              prefixIcon: Icons.lock,
+              obscureText: true,
             ),
-            SizedBox(
-              height: h * 0.01,
-            ),
-            Container(
-              height: h * 0.06,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.14),
-                borderRadius: BorderRadius.circular(h * 0.01),
-              ),
-              child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: Colors.white,
-                  ),
-                  hintText: 'Enter your email',
-                  hintStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: h * 0.02,
-            ),
-            Text(
-              "Password",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white.withOpacity(0.48),
-              ),
-            ),
-            SizedBox(
-              height: h * 0.01,
-            ),
-            Container(
-              height: h * 0.06,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.14),
-                borderRadius: BorderRadius.circular(h * 0.01),
-              ),
-              child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Colors.white,
-                  ),
-                  hintText: 'Enter your password',
-                  hintStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: h * 0.02,
-            ),
-            Text(
-              "Confirm Password",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white.withOpacity(0.48),
-              ),
-            ),
-            SizedBox(
-              height: h * 0.01,
-            ),
-            Container(
-              height: h * 0.06,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.14),
-                borderRadius: BorderRadius.circular(h * 0.01),
-              ),
-              child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Colors.white,
-                  ),
-                  hintText: 'Enter re-password',
-                  hintStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: h * 0.02,
-            ),
+            SizedBox(height: h * 0.02),
+            // Privacy Policy and Terms checkbox
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Obx(
-                  () => Checkbox(
+                      () => Checkbox(
                     activeColor: Color(0xFF00B6AA),
                     value: controller.isChecked.value,
                     onChanged: (bool? value) {
@@ -301,75 +164,88 @@ class SignUpPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: h * 0.04,
-            ),
+            SizedBox(height: h * 0.04),
+            // Verify Button
             GestureDetector(
               onTap: () {
-                Get.offAllNamed(AppRoutes.BOTTOMNAVIIGATION);
+                controller.registerUser();
               },
-              child: Container(
-                height: h * 0.06,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xff1E0040),
-                      Color(0xffF600AB),
-                    ],
-                  ),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
-                    width: h * 0.004,
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    h * 0.026,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "Verify",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: h * 0.023,
-                    ),
-                  ),
-                ),
+              child: _buildButton(
+                text: "Verify",
+                gradientColors: [Color(0xff1E0040), Color(0xffF600AB)],
               ),
             ),
-            SizedBox(
-              height: h * 0.02,
-            ),
+            SizedBox(height: h * 0.02),
+            // Log In Button
             GestureDetector(
               onTap: () {
                 Get.offAllNamed(AppRoutes.HOME);
               },
-              child: Container(
-                height: h * 0.06,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.1),
-                    width: h * 0.002,
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    h * 0.026,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "Log In",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: h * 0.023,
-                    ),
-                  ),
-                ),
+              child: _buildButton(
+                text: "Log In",
+                borderColor: Colors.white.withOpacity(0.1),
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required String hintText,
+    required TextEditingController controller,
+    IconData? prefixIcon,
+    bool obscureText = false,
+  }) {
+    return Container(
+      height: MediaQuery.of(Get.context!).size.height * 0.06,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.14),
+        borderRadius: BorderRadius.circular(MediaQuery.of(Get.context!).size.height * 0.01),
+      ),
+      child: TextField(
+        controller: controller,
+        style: TextStyle(color: Colors.white),
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          prefixIcon: prefixIcon != null
+              ? Icon(prefixIcon, color: Colors.white)
+              : null,
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.white),
+          contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButton({
+    required String text,
+    List<Color>? gradientColors,
+    Color? borderColor,
+  }) {
+    return Container(
+      height: MediaQuery.of(Get.context!).size.height * 0.06,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: gradientColors != null
+            ? LinearGradient(colors: gradientColors)
+            : null,
+        border: borderColor != null
+            ? Border.all(color: borderColor, width: MediaQuery.of(Get.context!).size.height * 0.002)
+            : null,
+        borderRadius: BorderRadius.circular(MediaQuery.of(Get.context!).size.height * 0.026),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: MediaQuery.of(Get.context!).size.height * 0.023,
+          ),
         ),
       ),
     );
