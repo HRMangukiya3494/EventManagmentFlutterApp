@@ -231,7 +231,7 @@ class AddNewCardPage extends StatelessWidget {
         padding: EdgeInsets.all(h * 0.01),
         child: GestureDetector(
           onTap: () {
-            Get.offAllNamed(AppRoutes.BOTTOMNAVIIGATION);
+            Get.back();
           },
           child: Container(
             height: h * 0.06,

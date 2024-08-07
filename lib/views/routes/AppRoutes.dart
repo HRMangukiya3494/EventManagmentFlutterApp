@@ -1,9 +1,12 @@
 import 'package:event_management/views/screens/BookingsPage.dart';
 import 'package:event_management/views/screens/BottomNavigationPage.dart';
 import 'package:event_management/views/screens/CategoryPage.dart';
+import 'package:event_management/views/screens/CheckoutPaymentPage.dart';
 import 'package:event_management/views/screens/HomePage.dart';
+import 'package:event_management/views/screens/IndivisualDetailsPage.dart';
 import 'package:event_management/views/screens/IntroScreen.dart';
 import 'package:event_management/views/screens/MyFavouritesPage.dart';
+import 'package:event_management/views/screens/PaymentFailPage.dart';
 import 'package:event_management/views/screens/ProfilePage.dart';
 import 'package:event_management/views/screens/SelectOptionPage.dart';
 import 'package:event_management/views/screens/credential/ForgetPasswordPage.dart';
@@ -15,6 +18,7 @@ import 'package:event_management/views/screens/profile/AddNewCardPage.dart';
 import 'package:event_management/views/screens/profile/EditProfilePage.dart';
 import 'package:event_management/views/screens/profile/NotificationsPage.dart';
 import 'package:event_management/views/screens/profile/PaymentMethodsPage.dart';
+import 'package:event_management/views/screens/PaymentSuceessPage.dart';
 import '../screens/SplashScreen.dart';
 import 'package:get/get.dart';
 import '../screens/credential/OTPVerificationPage.dart';
@@ -39,6 +43,10 @@ class AppRoutes {
   static const String PAYMENTMETHODS = "/payment_methods_page";
   static const String ADDNEWCARD = "/add_new_card_page";
   static const String CATEGORY = "/category_page";
+  static const String INDIVISUALEVENT = "/individuals_event_page";
+  static const String CHECKOUTPAYMENT = "/checkout_payment_page";
+  static const String SUCEESSPAYMENT = "/success_payment_page";
+  static const String FAILPAYMENT = "/fail_payment_page";
 
   static final routes = [
     GetPage(
@@ -116,6 +124,22 @@ class AppRoutes {
     GetPage(
       name: CATEGORY,
       page: () => CategoryPage(),
+    ),
+    GetPage(
+      name: INDIVISUALEVENT,
+      page: () => IndividualDetailsPage(),
+    ),
+    GetPage(
+      name: CHECKOUTPAYMENT,
+      page: () => CheckoutPaymentPage(),
+    ),
+    GetPage(
+      name: SUCEESSPAYMENT,
+      page: () => PaymentSuceessPage(),
+    ),
+    GetPage(
+      name: FAILPAYMENT,
+      page: () => PaymentFailPage(),
     ),
   ];
 }
