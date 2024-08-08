@@ -19,8 +19,8 @@ class CategoryController extends GetxController {
       isLoading(true);
       final response = await http.get(Uri.parse('https://customize.brainartit.com/event/api/get_category'));
 
-      log('Response status: ${response.statusCode}');
-      // print('Response body: ${response.body}');
+      // log('Response status: ${response.statusCode}');
+      // log('Response body: ${response.body}'); // Log response body
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body)['data'] as List;

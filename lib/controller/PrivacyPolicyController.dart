@@ -16,7 +16,7 @@ class PrivacyPolicyController extends GetxController {
   Future<void> fetchPrivacyPolicy() async {
     try {
       var request = await HttpClient().getUrl(
-        Uri.parse('https://customize.brainartit.com/ecommerce/api/about-us'),
+        Uri.parse('https://customize.brainartit.com/event/api/privecy'),
       );
       var response = await request.close();
 
@@ -25,7 +25,7 @@ class PrivacyPolicyController extends GetxController {
         Map<String, dynamic> jsonResponse = json.decode(responseBody);
 
         if (jsonResponse['status'] == 1) {
-          htmlContent.value = jsonResponse['data'];
+          htmlContent.value = jsonResponse['data']['trems'];
           log("Data Show");
         } else {
           throw Exception(jsonResponse['message']);

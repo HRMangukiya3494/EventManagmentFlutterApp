@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   sweet_nav_bar: ^1.0.7
   flutter_widget_from_html:
+  pin_input_text_field:
   get:
 
 dev_dependencies:

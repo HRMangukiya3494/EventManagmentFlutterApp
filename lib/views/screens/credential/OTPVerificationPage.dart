@@ -1,14 +1,18 @@
-import 'package:event_management/views/routes/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pin_input_text_field/pin_input_text_field.dart';
+import 'package:event_management/controller/OTPVerificationController.dart';
 
 class OTPVerificationPage extends StatelessWidget {
-  const OTPVerificationPage({super.key});
+  OTPVerificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+    final email = Get.arguments.toString();
+    final OTPVerificationController otpVerificationController = Get.put(OTPVerificationController(email));
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
@@ -46,32 +50,41 @@ class OTPVerificationPage extends StatelessWidget {
       ),
       backgroundColor: Color(0xff000513),
       body: Padding(
-        padding: EdgeInsets.all(
-          h * 0.02,
-        ),
+        padding: EdgeInsets.all(h * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Enter the verification code we just sent to your number +233 *******53.",
+              "Enter the verification code we just sent to your email $email",
               style: TextStyle(
                 color: Colors.white.withOpacity(0.7),
                 fontSize: h * 0.02,
               ),
             ),
-            SizedBox(
-              height: h * 0.06,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                6,
-                (index) => _buildOtpTextField(index, h, context),
+            SizedBox(height: h * 0.06),
+            PinInputTextField(
+              controller: otpVerificationController.pinEditingController,
+              pinLength: 4,
+              autoFocus: true,
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              decoration: UnderlineDecoration(
+                textStyle: TextStyle(
+                  fontSize: h * 0.026,
+                  color: Colors.white,
+                ),
+                colorBuilder: PinListenColorBuilder(
+                  Colors.white,
+                  Colors.grey,
+                ),
               ),
+              onChanged: (pin) {
+                if (pin.length == 4) {
+                  otpVerificationController.verifyOtp(pin);
+                }
+              },
             ),
-            SizedBox(
-              height: h * 0.02,
-            ),
+            SizedBox(height: h * 0.02),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -82,21 +95,24 @@ class OTPVerificationPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: h * 0.02),
                 ),
-                Text(
-                  "Resend",
-                  style: TextStyle(
-                      color: Color(0xff00B6AA),
-                      fontWeight: FontWeight.bold,
-                      fontSize: h * 0.02),
+                TextButton(
+                  onPressed: () {
+                    otpVerificationController.sendResetRequest(email);
+                  },
+                  child: Text(
+                    "Resend",
+                    style: TextStyle(
+                        color: Color(0xff00B6AA),
+                        fontWeight: FontWeight.bold,
+                        fontSize: h * 0.02),
+                  ),
                 ),
               ],
             ),
-            SizedBox(
-              height: h * 0.04,
-            ),
+            SizedBox(height: h * 0.04),
             GestureDetector(
               onTap: () {
-                Get.offAllNamed(AppRoutes.SIGNINSCREEN);
+                otpVerificationController.verifyOtp(otpVerificationController.pinEditingController.text);
               },
               child: Container(
                 height: h * 0.06,
@@ -112,9 +128,7 @@ class OTPVerificationPage extends StatelessWidget {
                     color: Colors.white.withOpacity(0.2),
                     width: h * 0.004,
                   ),
-                  borderRadius: BorderRadius.circular(
-                    h * 0.026,
-                  ),
+                  borderRadius: BorderRadius.circular(h * 0.026),
                 ),
                 child: Center(
                   child: Text(
@@ -129,42 +143,6 @@ class OTPVerificationPage extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildOtpTextField(int index, double height, BuildContext context) {
-    return SizedBox(
-      height: height * 0.06,
-      width: height * 0.06,
-      child: Container(
-        decoration: BoxDecoration(
-
-          color: Colors.white.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(height * 0.01),
-          border: Border.all(color: Colors.white,), // Border color
-        ),
-        child: TextField(
-          style: TextStyle(
-            color: Colors.white,
-          ),
-          textAlign: TextAlign.center,
-          keyboardType: TextInputType.number,
-          maxLength: 1,
-          decoration: InputDecoration(
-            counterText: "",
-            border: InputBorder.none,
-          ),
-          cursorColor: Color(0xff00B6AA),
-          onChanged: (value) {
-            if (value.length == 1 && index < 5) {
-              FocusScope.of(context).nextFocus();
-            }
-            if (value.isEmpty && index > 0) {
-              FocusScope.of(context).previousFocus();
-            }
-          },
         ),
       ),
     );

@@ -7,9 +7,12 @@ import 'package:event_management/views/screens/IndivisualDetailsPage.dart';
 import 'package:event_management/views/screens/IntroScreen.dart';
 import 'package:event_management/views/screens/MyFavouritesPage.dart';
 import 'package:event_management/views/screens/PaymentFailPage.dart';
+import 'package:event_management/views/screens/PopularEventsPage.dart';
 import 'package:event_management/views/screens/ProfilePage.dart';
 import 'package:event_management/views/screens/SelectOptionPage.dart';
+import 'package:event_management/views/screens/UpcomingEventsPage.dart';
 import 'package:event_management/views/screens/credential/ForgetPasswordPage.dart';
+import 'package:event_management/views/screens/credential/NewPasswordPage.dart';
 import 'package:event_management/views/screens/credential/PrivacyPolicyPage.dart';
 import 'package:event_management/views/screens/credential/SignInScreen.dart';
 import 'package:event_management/views/screens/credential/SignUpPage.dart';
@@ -47,6 +50,9 @@ class AppRoutes {
   static const String CHECKOUTPAYMENT = "/checkout_payment_page";
   static const String SUCEESSPAYMENT = "/success_payment_page";
   static const String FAILPAYMENT = "/fail_payment_page";
+  static const String NEWPASSWORD = "/new_password_page";
+  static const String UPCOMING = "/upcoming_events_page";
+  static const String POPULAREVENTS = "/popular_events_page";
 
   static final routes = [
     GetPage(
@@ -140,6 +146,18 @@ class AppRoutes {
     GetPage(
       name: FAILPAYMENT,
       page: () => PaymentFailPage(),
+    ),
+    GetPage(
+      name: NEWPASSWORD,
+      page: () => NewPasswordPage(),
+    ),
+    GetPage(
+      name: UPCOMING,
+      page: () => UpcomingEventsPage(),
+    ),
+    GetPage(
+      name: POPULAREVENTS,
+      page: () => PopularEventsPage(),
     ),
   ];
 }

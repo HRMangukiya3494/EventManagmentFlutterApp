@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:event_management/views/routes/AppRoutes.dart';
 import 'package:event_management/views/utils/VarUtils.dart';
 import 'package:flutter/material.dart';
@@ -126,6 +127,8 @@ class SignUpController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        VarUtils.userId = responseData['data']['id'] ?? 0;
+        log(VarUtils.userId.toString(),);
         Get.offAllNamed(AppRoutes.BOTTOMNAVIIGATION);
       } else {
         Get.snackbar(

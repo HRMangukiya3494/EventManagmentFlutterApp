@@ -1,14 +1,19 @@
-import 'package:event_management/views/routes/AppRoutes.dart';
+import 'package:event_management/controller/ForgetPasswordController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ForgetPasswordPage extends StatelessWidget {
-  const ForgetPasswordPage({super.key});
+  ForgetPasswordPage({super.key});
+
+  final ForgetPasswordController controller =
+      Get.put(ForgetPasswordController());
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
@@ -44,10 +49,8 @@ class ForgetPasswordPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(
-          h * 0.02,
-        ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(h * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -79,6 +82,7 @@ class ForgetPasswordPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(h * 0.01),
               ),
               child: TextField(
+                controller: emailController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -98,40 +102,50 @@ class ForgetPasswordPage extends StatelessWidget {
             SizedBox(
               height: h * 0.06,
             ),
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.OTPVEREFICATION);
-              },
-              child: Container(
-                height: h * 0.06,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xff1E0040),
-                      Color(0xffF600AB),
-                    ],
-                  ),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
-                    width: h * 0.004,
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    h * 0.026,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "Submit",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: h * 0.023,
+            Obx(() {
+              return GestureDetector(
+                onTap: () {
+                  String email = emailController.text;
+                  if (email.isNotEmpty) {
+                    controller.sendResetRequest(email).then((_) {
+                      emailController.clear();
+                    });
+                  } else {
+                    Get.snackbar('Error', 'Please enter an email address',
+                        snackPosition: SnackPosition.BOTTOM);
+                  }
+                },
+                child: Container(
+                  height: h * 0.06,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xff1E0040),
+                        Color(0xffF600AB),
+                      ],
                     ),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.2),
+                      width: h * 0.004,
+                    ),
+                    borderRadius: BorderRadius.circular(h * 0.026),
+                  ),
+                  child: Center(
+                    child: controller.isLoading.value
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Text(
+                            "Submit",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: h * 0.023,
+                            ),
+                          ),
                   ),
                 ),
-              ),
-            ),
+              );
+            }),
           ],
         ),
       ),

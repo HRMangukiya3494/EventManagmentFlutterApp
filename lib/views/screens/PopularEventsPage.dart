@@ -1,16 +1,19 @@
-import 'package:event_management/controller/MyFavoritesController.dart';
+import 'package:event_management/controller/PopularEventController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyFavouritesPage extends StatelessWidget {
-  MyFavouritesPage({super.key});
-
-  final MyFavoritesController eventsController = Get.put(MyFavoritesController());
+class PopularEventsPage extends StatelessWidget {
+  const PopularEventsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
+    final PopularEventController eventsController = Get.put(
+      PopularEventController(),
+    );
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
@@ -24,10 +27,19 @@ class MyFavouritesPage extends StatelessWidget {
             ),
           ),
           child: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: Text(
-              "My Favourites",
+              "Popular Events",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -75,6 +87,7 @@ class MyFavouritesPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(h * 0.02),
                                 image: DecorationImage(
                                   image: NetworkImage(event.image),
+                                  // Use the URL for the event image
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -96,6 +109,7 @@ class MyFavouritesPage extends StatelessWidget {
                                 color: Color(0xff00B6AA),
                                 fontSize: h * 0.018,
                               ),
+
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
