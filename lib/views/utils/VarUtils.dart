@@ -10,6 +10,7 @@ class VarUtils {
   static String password = "";
   static String rePassword = "";
   static String email = "";
+  static String userProfile = "";
 
   static void showLog() {
     log("Name: $name");
@@ -17,5 +18,6 @@ class VarUtils {
     log("Password: $password");
     log("Re Password: $rePassword");
     log("Email: $email");
+    log("Profile Picture: $userProfile");
   }
 }

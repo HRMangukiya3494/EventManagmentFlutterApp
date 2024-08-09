@@ -57,6 +57,8 @@ class SignInController extends GetxController {
           // Save user data to VarUtils
           VarUtils.userId = userData['id'];
           VarUtils.name = userData['name'];
+          VarUtils.userProfile = userData['profile_pic'];
+          VarUtils.email = userData['email'];
           VarUtils.phone = userData['phone'].toString();
 
           // Show success message

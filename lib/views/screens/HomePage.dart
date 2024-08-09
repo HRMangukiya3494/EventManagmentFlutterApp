@@ -15,16 +15,13 @@ class HomePage extends StatelessWidget {
 
   final CategoryController categoryController = Get.put(CategoryController());
   final EventsController upcomingController = Get.put(EventsController());
-  final PopularEventController popularEventController = Get.put(PopularEventController());
+  final PopularEventController popularEventController =
+      Get.put(PopularEventController());
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
-
-    final HomeController homeController = Get.put(
-      HomeController(),
-    );
 
     return Scaffold(
       appBar: PreferredSize(
@@ -52,7 +49,7 @@ class HomePage extends StatelessWidget {
             actions: [
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoutes.MANAGENOTIFICATIONS);
+                  Get.toNamed(AppRoutes.SEARCH);
                 },
                 child: Container(
                   height: h * 0.04,
@@ -66,7 +63,7 @@ class HomePage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Icon(
-                      Icons.notifications_sharp,
+                      Icons.search_outlined,
                       size: h * 0.02,
                       color: Colors.white,
                     ),
@@ -87,45 +84,6 @@ class HomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Obx(() {
-                return Container(
-                  height: h * 0.06,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.14),
-                    borderRadius: BorderRadius.circular(h * 0.02),
-                  ),
-                  child: TextField(
-                    onChanged: (text) {
-                      homeController.updateLocationText(text);
-                    },
-                    cursorColor: Color(0xff00B6AA),
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.location_on,
-                        color: homeController.isTyping
-                            ? Color(0xff00B6AA)
-                            : Colors.white.withOpacity(0.3),
-                      ),
-                      suffixIcon: Icon(
-                        homeController.isTyping ? Icons.clear : Icons.mic,
-                        color: Colors.white,
-                      ),
-                      hintText: 'Enter Location',
-                      hintStyle: TextStyle(
-                        color: Colors.white.withOpacity(0.3),
-                      ),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
-                    ),
-                  ),
-                );
-              }),
-              SizedBox(
-                height: h * 0.02,
-              ),
               ViewAllRowWidget(
                 title: "Category",
                 onTap: () {
@@ -331,7 +289,8 @@ class HomePage extends StatelessWidget {
                   return SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: popularEventController.upcomingEvents.map((event) {
+                      children:
+                          popularEventController.upcomingEvents.map((event) {
                         return Container(
                           margin: EdgeInsets.only(
                             right: h * 0.02,
@@ -349,7 +308,7 @@ class HomePage extends StatelessWidget {
                             children: [
                               Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
@@ -357,7 +316,7 @@ class HomePage extends StatelessWidget {
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.circular(h * 0.02),
+                                          BorderRadius.circular(h * 0.02),
                                       image: DecorationImage(
                                         image: NetworkImage(event.image),
                                         fit: BoxFit.cover,

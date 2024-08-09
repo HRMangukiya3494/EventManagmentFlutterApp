@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 class MyFavouritesPage extends StatelessWidget {
   MyFavouritesPage({super.key});
 
-  final MyFavoritesController eventsController = Get.put(MyFavoritesController());
+  final MyFavoritesController eventsController =
+      Get.put(MyFavoritesController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,31 @@ class MyFavouritesPage extends StatelessWidget {
       body: Obx(() {
         if (eventsController.isLoading.value) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
           );
         } else if (eventsController.hasError.value) {
           return Center(
-            child: Text(eventsController.errorMessage.value),
+            child: Text(
+              eventsController.errorMessage.value,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: h * 0.024,
+              ),
+            ),
+          );
+        }else if (eventsController.upcomingEvents.isEmpty) {
+          return Center(
+            child: Text(
+              "No Favorites Events...",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: h * 0.024,
+              ),
+            ),
           );
         } else {
           return Padding(

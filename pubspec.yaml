@@ -11,7 +11,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   sweet_nav_bar: ^1.0.7
+  speech_to_text:
   flutter_widget_from_html:
+  image_picker:
   pin_input_text_field:
   get:
 

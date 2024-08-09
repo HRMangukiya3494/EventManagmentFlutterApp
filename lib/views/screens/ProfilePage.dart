@@ -1,5 +1,6 @@
 import 'package:event_management/views/routes/AppRoutes.dart';
 import 'package:event_management/views/utils/ImageUtils.dart';
+import 'package:event_management/views/utils/VarUtils.dart';
 import 'package:event_management/views/utils/listUtils/ProfilePageList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,10 +58,9 @@ class ProfilePage extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               image: DecorationImage(
-                                image: AssetImage(
-                                  ImageUtils.ImagePath +
-                                      ImageUtils.SelectOptionBG,
-                                ),
+                                image: NetworkImage(
+                                    "https://customize.brainartit.com/event/public/upload/profile/" +
+                                        VarUtils.userProfile),
                                 fit: BoxFit.cover,
                               ),
                               shape: BoxShape.circle,
@@ -72,7 +72,7 @@ class ProfilePage extends StatelessWidget {
                           height: h * 0.01,
                         ),
                         Text(
-                          "Sara Williamson",
+                          VarUtils.name,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -83,7 +83,7 @@ class ProfilePage extends StatelessWidget {
                           height: h * 0.01,
                         ),
                         Text(
-                          "Sarawilliamson2306@gmail.com",
+                          VarUtils.email,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: h * 0.016,

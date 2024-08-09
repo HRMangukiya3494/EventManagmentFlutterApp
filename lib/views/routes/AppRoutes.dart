@@ -9,6 +9,7 @@ import 'package:event_management/views/screens/MyFavouritesPage.dart';
 import 'package:event_management/views/screens/PaymentFailPage.dart';
 import 'package:event_management/views/screens/PopularEventsPage.dart';
 import 'package:event_management/views/screens/ProfilePage.dart';
+import 'package:event_management/views/screens/SearchPage.dart';
 import 'package:event_management/views/screens/SelectOptionPage.dart';
 import 'package:event_management/views/screens/UpcomingEventsPage.dart';
 import 'package:event_management/views/screens/credential/ForgetPasswordPage.dart';
@@ -53,6 +54,7 @@ class AppRoutes {
   static const String NEWPASSWORD = "/new_password_page";
   static const String UPCOMING = "/upcoming_events_page";
   static const String POPULAREVENTS = "/popular_events_page";
+  static const String SEARCH = "/search_page";
 
   static final routes = [
     GetPage(
@@ -158,6 +160,10 @@ class AppRoutes {
     GetPage(
       name: POPULAREVENTS,
       page: () => PopularEventsPage(),
+    ),
+    GetPage(
+      name: SEARCH,
+      page: () => SearchPage(),
     ),
   ];
 }
